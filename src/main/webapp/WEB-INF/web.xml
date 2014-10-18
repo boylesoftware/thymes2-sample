@@ -24,10 +24,35 @@
 	</context-param>
 
 	<context-param>
+		<param-name>x2.service.auth.provider</param-name>
+		<param-value>org.bsworks.x2.services.auth.impl.prsrc.PersistentResourceActorAuthenticationServiceProvider</param-value>
+	</context-param>
+	<context-param>
+		<param-name>x2.service.auth.prsrc.actorResourceClass</param-name>
+		<param-value>org.bsworks.x2sample.resources.Account</param-value>
+	</context-param>
+	<context-param>
+		<param-name>x2.service.auth.prsrc.usernameProperty</param-name>
+		<param-value>email</param-value>
+	</context-param>
+	<context-param>
+		<param-name>x2.service.auth.prsrc.actorProperties</param-name>
+		<param-value>secretKeyHex,passwordDigestHex,admin</param-value>
+	</context-param>
+	<context-param>
+		<param-name>x2.service.auth.prsrc.passwordDigestAlg</param-name>
+		<param-value>SHA-1</param-value>
+	</context-param>
+
+	<context-param>
 		<param-name>x2.app.endpoints</param-name>
 		<param-value>
+			/api/login
+				GET org.bsworks.x2.toolbox.handlers.PasswordLoginEndpointCallHandler
 			/api/products(?:/([1-9][0-9]*))?
-				org.bsworks.x2sample.resources.Product
+				org.bsworks.x2sample.handlers.ProductsEndpointHandler
+			/api/accounts(?:/([1-9][0-9]*))?
+				org.bsworks.x2sample.handlers.AccountsEndpointHandler
 		</param-value>
 	</context-param>
 

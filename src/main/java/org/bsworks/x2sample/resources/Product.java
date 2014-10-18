@@ -2,10 +2,13 @@ package org.bsworks.x2sample.resources;
 
 import java.math.BigDecimal;
 
-import org.bsworks.x2.resource.IdHandling;
-import org.bsworks.x2.resource.MetaPropertyType;
-import org.bsworks.x2.resource.annotations.IdProperty;
-import org.bsworks.x2.resource.annotations.MetaProperty;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.bsworks.x2.resource.ResourcePropertyAccess;
+import org.bsworks.x2.resource.annotations.AccessRestriction;
 import org.bsworks.x2.resource.annotations.Persistence;
 import org.bsworks.x2.resource.annotations.PersistentResource;
 import org.bsworks.x2.resource.annotations.Property;
@@ -16,73 +19,32 @@ import org.bsworks.x2.resource.annotations.Property;
  *
  * @author Lev Himmelfarb
  */
-@PersistentResource(persistentCollection="product")
-public class Product {
-
-	/**
-	 * Record id.
-	 */
-	@IdProperty(handling=IdHandling.AUTO_GENERATED, persistentField="id")
-	private Integer id;
-
-	/**
-	 * Record version number.
-	 */
-	@MetaProperty(type=MetaPropertyType.VERSION, persistentField="version")
-	private int version;
+@PersistentResource(persistentCollection="product", accessRestrictions={
+	@AccessRestriction(value=ResourcePropertyAccess.SUBMIT,
+			allowTo={ "admin" }),
+	@AccessRestriction(value=ResourcePropertyAccess.DELETE,
+			allowTo={ "admin" })
+})
+public class Product
+	extends AbstractPersistentResource {
 
 	/**
 	 * Product title.
 	 */
 	@Property(persistence=@Persistence(field="title"))
+	@NotNull
+	@Size(min=1, max=50)
 	private String title;
 
 	/**
 	 * Product price.
 	 */
 	@Property(persistence=@Persistence(field="price"))
+	@NotNull
+	@Digits(integer=3, fraction=2)
+	@DecimalMin(value="0.00")
 	private BigDecimal price;
 
-
-	/**
-	 * Get record id.
-	 *
-	 * @return Record id.
-	 */
-	public Integer getId() {
-
-		return this.id;
-	}
-
-	/**
-	 * Set record id.
-	 *
-	 * @param id Record id.
-	 */
-	public void setId(final Integer id) {
-
-		this.id = id;
-	}
-
-	/**
-	 * Get record version.
-	 *
-	 * @return Record version number.
-	 */
-	public int getVersion() {
-
-		return this.version;
-	}
-
-	/**
-	 * Set record version.
-	 *
-	 * @param version Record version number.
-	 */
-	public void setVersion(final int version) {
-
-		this.version = version;
-	}
 
 	/**
 	 * Get product title.
