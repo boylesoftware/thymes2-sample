@@ -1,6 +1,17 @@
+# Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# web-app links
+src/main/webapp/WEB-INF/classes/
+src/main/webapp/WEB-INF/lib/
+src/main/webapp/META-INF/
