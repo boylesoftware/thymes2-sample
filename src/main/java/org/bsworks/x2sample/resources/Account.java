@@ -7,16 +7,20 @@ import java.util.Set;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.bsworks.x2.Actor;
+import org.bsworks.x2.resource.Ref;
 import org.bsworks.x2.resource.ResourcePropertyAccess;
 import org.bsworks.x2.resource.annotations.AccessRestriction;
+import org.bsworks.x2.resource.annotations.DependentRefProperty;
 import org.bsworks.x2.resource.annotations.Persistence;
 import org.bsworks.x2.resource.annotations.PersistentResource;
 import org.bsworks.x2.resource.annotations.Property;
+import org.bsworks.x2.resource.annotations.ValueType;
 import org.bsworks.x2.resource.validation.constraints.Email;
 import org.bsworks.x2.resource.validation.groups.Create;
 import org.bsworks.x2.util.Hex;
@@ -105,6 +109,42 @@ public class Account
 	@NotNull
 	@Size(min=1, max=50)
 	private String lastName;
+
+	/**
+	 * Billing address.
+	 */
+	@Property(persistence=@Persistence(field="bill_"))
+	@NotNull
+	@Valid
+	private Address billingAddress;
+
+	/**
+	 * Optional shipping address.
+	 */
+	@Property(persistence=@Persistence(field="ship_"))
+	@Valid
+	private Address shippingAddress;
+
+	/**
+	 * Payment information.
+	 */
+	@Property(persistence=@Persistence(parentIdField="account_id"),
+		updateIfNull=false,
+		valueTypes={
+			@ValueType(name="CREDIT_CARD", concreteClass=CreditCard.class,
+					persistentCollection="ccard"),
+			@ValueType(name="ACH_TRANSFER", concreteClass=BankAccount.class,
+					persistentCollection="bankaccount")
+		})
+	@NotNull(groups={ Create.class })
+	@Valid
+	private PaymentInfo paymentInfo;
+
+	/**
+	 * Customer orders.
+	 */
+	@DependentRefProperty(reverseRefProperty="account", optional=true)
+	private Set<Ref<Order>> orders;
 
 
 	/**
@@ -312,5 +352,85 @@ public class Account
 	public void setLastName(final String lastName) {
 
 		this.lastName = lastName;
+	}
+
+	/**
+	 * Get billing address.
+	 *
+	 * @return The billing address.
+	 */
+	public Address getBillingAddress() {
+
+		return this.billingAddress;
+	}
+
+	/**
+	 * Set billing address.
+	 *
+	 * @param billingAddress The billing address.
+	 */
+	public void setBillingAddress(final Address billingAddress) {
+
+		this.billingAddress = billingAddress;
+	}
+
+	/**
+	 * Get optional shipping address.
+	 *
+	 * @return The shipping address, or {@code null}.
+	 */
+	public Address getShippingAddress() {
+
+		return this.shippingAddress;
+	}
+
+	/**
+	 * Set optional shipping address.
+	 *
+	 * @param shippingAddress The shipping address.
+	 */
+	public void setShippingAddress(final Address shippingAddress) {
+
+		this.shippingAddress = shippingAddress;
+	}
+
+	/**
+	 * Get payment information.
+	 *
+	 * @return Payment information.
+	 */
+	public PaymentInfo getPaymentInfo() {
+
+		return this.paymentInfo;
+	}
+
+	/**
+	 * Set payment information.
+	 *
+	 * @param paymentInfo Payment information.
+	 */
+	public void setPaymentInfo(final PaymentInfo paymentInfo) {
+
+		this.paymentInfo = paymentInfo;
+	}
+
+	/**
+	 * Get customer orders.
+	 *
+	 * @return Order references.
+	 */
+	public Set<Ref<Order>> getOrders() {
+
+		return this.orders;
+	}
+
+	/**
+	 * Set customer orders.
+	 *
+	 * @param orders Order references.
+	 */
+	public void setOrders(final Set<Ref<Order>> orders) {
+
+		this.orders = orders;
 	}
 }

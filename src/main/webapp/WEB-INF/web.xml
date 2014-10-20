@@ -53,6 +53,8 @@
 				org.bsworks.x2sample.handlers.ProductsEndpointHandler
 			/api/accounts(?:/([1-9][0-9]*))?
 				org.bsworks.x2sample.handlers.AccountsEndpointHandler
+			/api/orders(?:/([1-9][0-9]*))?
+				org.bsworks.x2sample.resources.Order
 		</param-value>
 	</context-param>
 
