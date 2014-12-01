@@ -42,19 +42,14 @@ fi
 
 FILE="$3"
 
-USER=""
-if [ -f user.txt ]; then
-	USER=`cat user.txt`
-fi
-
 AUTH_TOKEN=""
 if [ -f headers.txt ]; then
 	AUTH_TOKEN=`grep -e '^Authentication-Info:' headers.txt | sed 's/.* nexttoken=\(.*\)\r/\1/'`
 fi
 
 AUTH_HEADER=""
-if [ -n "$USER" -a -n "$AUTH_TOKEN" ]; then
-	AUTH_HEADER="Authorization: AuthToken username=$USER,token=$AUTH_TOKEN"
+if [ -n "$AUTH_TOKEN" ]; then
+	AUTH_HEADER="Authorization: AuthToken $AUTH_TOKEN"
 fi
 
 if [ -n "$FILE" ]; then

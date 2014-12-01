@@ -5,4 +5,4 @@
 # author: Lev Himmelfarb
 #
 
-rm -f user.txt headers.txt
+rm -f headers.txt

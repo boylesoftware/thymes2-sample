@@ -35,8 +35,6 @@ if [ -z "$USER" ]; then
 	exit 1
 fi
 
-echo -n "$USER" > user.txt
-
 curl -v -D headers.txt \
-"$BASE_URL/login?username=$USER&password=$PASSWORD" \
+"$BASE_URL/login?user=$USER&password=$PASSWORD" \
 | python -mjson.tool

@@ -148,10 +148,19 @@ public class Account
 
 
 	/**
+	 * Returns string representation of the account record id.
+	 */
+	@Override
+	public String getActorId() {
+
+		return String.valueOf(this.getId().intValue());
+	}
+
+	/**
 	 * Returns user e-mail.
 	 */
 	@Override
-	public String getUsername() {
+	public String getActorName() {
 
 		return this.email;
 	}

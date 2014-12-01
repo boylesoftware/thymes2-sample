@@ -32,7 +32,7 @@
 		<param-value>org.bsworks.x2sample.resources.Account</param-value>
 	</context-param>
 	<context-param>
-		<param-name>x2.service.auth.prsrc.usernameProperty</param-name>
+		<param-name>x2.service.auth.prsrc.loginNameProperty</param-name>
 		<param-value>email</param-value>
 	</context-param>
 	<context-param>
