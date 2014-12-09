@@ -84,7 +84,7 @@ public class AccountsEndpointHandler
 								FilterConditionType.EQ, recTmpl.getEmail()))
 				.getCount() > 0)
 			throw new EndpointCallErrorException(
-					HttpServletResponse.SC_BAD_REQUEST,
+					HttpServletResponse.SC_BAD_REQUEST, null,
 					"This e-mail address is already used.");
 
 		// create secret key
@@ -116,7 +116,7 @@ public class AccountsEndpointHandler
 								FilterConditionType.NE, rec.getId()))
 				.getCount() > 0)
 			throw new EndpointCallErrorException(
-					HttpServletResponse.SC_BAD_REQUEST,
+					HttpServletResponse.SC_BAD_REQUEST, null,
 					"This e-mail address is used by another acccount.");
 
 		// proceed with updating the account

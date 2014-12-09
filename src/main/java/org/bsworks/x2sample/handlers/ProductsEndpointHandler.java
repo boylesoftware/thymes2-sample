@@ -45,7 +45,7 @@ public class ProductsEndpointHandler
 								FilterConditionType.EQ, recTmpl.getTitle()))
 				.getCount() > 0)
 			throw new EndpointCallErrorException(
-					HttpServletResponse.SC_BAD_REQUEST,
+					HttpServletResponse.SC_BAD_REQUEST, null,
 					"A product with the same title already exists.");
 
 		super.create(ctx, recTmpl);
@@ -65,7 +65,7 @@ public class ProductsEndpointHandler
 								FilterConditionType.NE, rec.getId()))
 				.getCount() > 0)
 			throw new EndpointCallErrorException(
-					HttpServletResponse.SC_BAD_REQUEST,
+					HttpServletResponse.SC_BAD_REQUEST, null,
 					"Another product with the same title exists.");
 
 		return super.update(ctx, rec, recTmpl);

@@ -108,7 +108,7 @@
 		<dependency>
 			<groupId>org.bsworks.x2</groupId>
 			<artifactId>thymes2</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>1.0.0-beta-2</version>
 		</dependency>
 
 		<!-- used APIs -->
