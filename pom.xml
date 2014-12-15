@@ -64,6 +64,13 @@
 		</repository>
 	</distributionManagement>
 
+	<repositories>
+		<repository>
+			<id>boylesoftware-os</id>
+			<url>http://www.boylesoftware.com/maven/repo-os</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -108,7 +115,7 @@
 		<dependency>
 			<groupId>org.bsworks.x2</groupId>
 			<artifactId>thymes2</artifactId>
-			<version>1.0.0-beta-2</version>
+			<version>1.0.0-beta-4</version>
 		</dependency>
 
 		<!-- used APIs -->
@@ -117,6 +124,11 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
 		</dependency>
 
 		<!-- API implementations -->
