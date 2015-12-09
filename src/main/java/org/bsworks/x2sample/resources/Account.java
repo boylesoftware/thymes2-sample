@@ -156,6 +156,15 @@ public class Account
 		return String.valueOf(this.getId().intValue());
 	}
 
+	/* (non-Javadoc)
+	 * @see org.bsworks.x2.Actor#getActorVersion()
+	 */
+	@Override
+	public String getActorVersion() {
+
+		return String.valueOf(this.getVersion());
+	}
+
 	/**
 	 * Returns user e-mail.
 	 */
