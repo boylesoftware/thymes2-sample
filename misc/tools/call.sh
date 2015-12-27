@@ -32,7 +32,7 @@ if [ -z "$1" ]; then
 	usage "$0"
 	exit 1
 fi
-METHOD=`echo -n "$1" | tr '[:lower:]' '[:upper:]'`
+METHOD=`printf "$1" | tr '[:lower:]' '[:upper:]'`
 
 RSRC="$2"
 if [ -z "$RSRC" ]; then
@@ -44,7 +44,7 @@ FILE="$3"
 
 AUTH_TOKEN=""
 if [ -f headers.txt ]; then
-	AUTH_TOKEN=`grep -e '^Authentication-Info:' headers.txt | sed 's/.* nexttoken=\(.*\)\r/\1/'`
+	AUTH_TOKEN=`grep -e '^Authentication-Info:' headers.txt | sed 's/.* nexttoken=\(.*\)/\1/'`
 fi
 
 AUTH_HEADER=""

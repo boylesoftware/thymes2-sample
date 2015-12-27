@@ -25,7 +25,7 @@ public abstract class AbstractPersistentResource {
 	 * Record version number.
 	 */
 	@MetaProperty(type=MetaPropertyType.VERSION, persistentField="version")
-	private int version;
+	private Integer version;
 
 	/**
 	 * Record created timestamp.
@@ -81,7 +81,7 @@ public abstract class AbstractPersistentResource {
 	 *
 	 * @return Record version number.
 	 */
-	public int getVersion() {
+	public Integer getVersion() {
 
 		return this.version;
 	}
@@ -91,7 +91,7 @@ public abstract class AbstractPersistentResource {
 	 *
 	 * @param version Record version number.
 	 */
-	public void setVersion(final int version) {
+	public void setVersion(final Integer version) {
 
 		this.version = version;
 	}

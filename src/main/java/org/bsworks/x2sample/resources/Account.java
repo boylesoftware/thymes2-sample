@@ -92,7 +92,7 @@ public class Account
 			@AccessRestriction(value=ResourcePropertyAccess.UPDATE,
 					allowTo={ "admin" })
 		})
-	private boolean admin;
+	private Boolean admin;
 
 	/**
 	 * User first name.
@@ -207,7 +207,7 @@ public class Account
 	@Override
 	public boolean hasRole(final String role) {
 
-		return ("admin".equals(role) && this.admin);
+		return ("admin".equals(role) && this.admin.booleanValue());
 	}
 
 	/**
@@ -216,7 +216,7 @@ public class Account
 	@Override
 	public boolean hasAnyRole(Set<String> roles) {
 
-		return (roles.contains("admin") && this.admin);
+		return (roles.contains("admin") && this.admin.booleanValue());
 	}
 
 
@@ -317,7 +317,7 @@ public class Account
 	 *
 	 * @return {@code true} if the user is an administrator.
 	 */
-	public boolean isAdmin() {
+	public Boolean getAdmin() {
 
 		return this.admin;
 	}
@@ -327,7 +327,7 @@ public class Account
 	 *
 	 * @param admin {@code true} if the user is an administrator.
 	 */
-	public void setAdmin(final boolean admin) {
+	public void setAdmin(final Boolean admin) {
 
 		this.admin = admin;
 	}
