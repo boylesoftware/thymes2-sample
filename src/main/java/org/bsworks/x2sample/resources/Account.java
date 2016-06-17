@@ -143,7 +143,9 @@ public class Account
 	/**
 	 * Customer orders.
 	 */
-	@DependentRefProperty(reverseRefProperty="account", optional=true)
+	@DependentRefProperty(reverseRefProperty="account",
+		optional=true,
+		fetchedByDefault=false)
 	private Set<Ref<Order>> orders;
 
 
